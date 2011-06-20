@@ -86,6 +86,7 @@ module.exports = Class(TabContent, function(supr) {
 
 	
 	var timeWindows = {
+		'Last 10 sec': 10 * time.second,
 		'Last 10 min': 10 * time.minute,
 		'Last hour':  time.hour,
 		'Last day':   time.day,
@@ -118,6 +119,7 @@ module.exports = Class(TabContent, function(supr) {
 	}
 
 	var seriesAggregates = {
+		'1 Second sum': '1s-sum',
 		'1 Minute sum': '1m-sum',
 		'1 Hour Sum': '1h-sum',
 		'1 Day Sum': '1d-sum'
