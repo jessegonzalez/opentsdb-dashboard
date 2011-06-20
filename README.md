@@ -5,6 +5,8 @@ A dashboard for viewing OpenTSDB data
 
 Please use Chrome while we work on performance :)
 
+Developed and tested on OS X 10.6
+
 Get started
 -----------
 Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
@@ -30,23 +32,36 @@ Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
 	cd opentsdb-dashboard
 	sudo npm install .
 
-4 Get hbase & asyncbase. I've been using hbase-0.90.X and https://github.com/stumbleupon/asynchbase/commit/d1aff70c71d3179ee47fb474fb75555c28ea741f
+4 Get hbase. I've been using hbase-0.90.X
 
-	# TODO Improve command-line instructions for this step
-	# http://hbase.apache.org/book/quickstart.html
-	hbase-0.90.2/bin/start-hbase.sh
+	# From http://hbase.apache.org/book/quickstart.html. Pick a mirror at http://www.apache.org/dyn/closer.cgi/hbase/ and run:
+	curl -O http://link.to.mirrot/hbase-0.90.X.tar.gz
+	tar -xzvf hbase-0.90.X.tar.gz
+	hbase-0.90.X/bin/start-hbase.sh
 
-5 Get and run OpenTSDB locally
+5 Get asyncbase
 
-	# TODO Improve command-line instructions for this step
-	# http://opentsdb.net/getting-started.html
-	env COMPRESSION=none HBASE_HOME=../hbase-0.90.2 ./src/create_table.sh
+	git clone https://github.com/stumbleupon/asynchbase.git
+	cd asynchbase
+	git checkout d1aff70c71d3
+	make
+ 	cp build/hbaseasync-1.0.jar ../opentsdb/third_party/hbase/hbaseasync-1.0.jar
+
+6 Get and run OpenTSDB locally
+
+	# From http://opentsdb.net/getting-started.html
+	git clone git://github.com/stumbleupon/opentsdb.git
+	cd opentsdb
+	make || make MD5=md5sum
+	make staticroot
+	env COMPRESSION=none HBASE_HOME=../hbase-0.90.X ./src/create_table.sh
 	./src/tsdb mkmetric http.hits sockets.simultaneous lolcats.viewed
 	./src/tsdb tsd --port=4242 --staticroot=build/staticroot --cachedir=/tmp/tsd
 
-6 (optional) Create some fake time series data to play with
+7 (optional) Create some fake time series data to play with
 
-	cat "module.exports = ['http.hits', 'sockets.simultaneous', 'lolcats.viewed']" > src/shared/metrics.js
+	cd opentsdb-dashboard
+	echo "module.exports = ['http.hits', 'sockets.simultaneous', 'lolcats.viewed']" > src/shared/metrics.js
 	node run/fakeProducer.js
 
 Develop
