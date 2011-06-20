@@ -6,7 +6,7 @@ var tsdHost = process.argv[2] || 'localhost',
 	tsdPort = process.argv[3] || 4242,
 	tsdSSL = true,
 	tsdBasicHTTPAuth = null, // 'username:password'
-	staticDir = __dirname + '/../static',
+	staticDir = __dirname + '/../build',
 	localHost = 'localhost',
 	localPort = 8080
 
