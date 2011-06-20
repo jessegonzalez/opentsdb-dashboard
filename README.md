@@ -19,18 +19,21 @@ Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
 	./configure
 	make
 	sudo make install
+	cd ..
 
 2 Get npm:
 
 	git clone http://github.com/isaacs/npm.git
 	cd npm
 	sudo make install
+	cd ..
 
 3 Get opentsdb-dashboard:
 
 	git clone https://github.com/clover/opentsdb-dashboard.git
 	cd opentsdb-dashboard
 	sudo npm install .
+	cd ..
 
 4 Get hbase. I've been using hbase-0.90.X
 
@@ -46,6 +49,7 @@ Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
 	git checkout d1aff70c71d3
 	make
  	cp build/hbaseasync-1.0.jar ../opentsdb/third_party/hbase/hbaseasync-1.0.jar
+	cd ..
 
 6 Get and run OpenTSDB locally
 
