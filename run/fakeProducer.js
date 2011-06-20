@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
-throw "Make sure you're not tunneling to production tsdb!"
-
 var child_process = require('child_process'),
 	each = require('std/each'),
 	metrics = require('../src/shared/metrics'),
 	time = require('std/time')
 
-var buckets = [1,2,3],
+var tags = { browser:['firefox', 'safari'] },
 	rateOfChange = 1.1
 
 var lastValues = {},
@@ -20,17 +18,21 @@ nc.stderr.on('data', function(data) { console.log('stderr', data.toString()) })
 
 function produce() {
 	each(metrics, function(metric) {
-		each(buckets, function(bucket) {
-			var uniqueName = metric+bucket
-			if (!lastValues[uniqueName]) {
-				lastValues[uniqueName] = 100 / bucket
-			}
-			var value = lastValues[uniqueName] * rateOfChange,
-				parts = ['put', metric, now(), value, 'http_hits=http_hits-'+bucket]
-			
-			lastValues[uniqueName] = value
-			rateOfChange = rateOfChange - (Math.log(rateOfChange * rand(0.9, 1.1))) / 10
-			nc.stdin.write(parts.concat('\n').join(' '))
+		each(tags, function(tagValues, tagKey) {
+			each(tagValues, function(tagValue, i) {
+				var uniqueName = [metric, tagKey, tagValue].join(':')
+				if (!lastValues[uniqueName]) {
+					lastValues[uniqueName] = 100 / (i + 1)
+				}
+				var value = lastValues[uniqueName] * rateOfChange,
+					parts = ['put', metric, now(), value, tagKey+'='+tagKey+'-'+tagValue]
+
+				lastValues[uniqueName] = value
+				rateOfChange = rateOfChange - (Math.log(rateOfChange * rand(0.9, 1.1))) / 10
+				var command = parts.concat('\n').join(' ')
+				nc.stdin.write(parts.concat('\n').join(' '))
+				console.log(command)
+			})
 		})
 	})
 }
