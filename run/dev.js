@@ -4,7 +4,7 @@ var Server = require('../src/server/Server')
 
 var tsdHost = process.argv[2] || 'localhost',
 	tsdPort = process.argv[3] || 4242,
-	tsdSSL = true,
+	tsdSSL = false,
 	tsdBasicHTTPAuth = null, // 'username:password'
 	staticDir = __dirname + '/../static',
 	localHost = 'localhost',
