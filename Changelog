@@ -1,0 +1,20 @@
+intended v1.2.0
++ open sourced!
++ mit license
++ pardon the mess :)
++ TODO list
+
+v1.1.1
++ link encodes current view parameters for easy IM/email sharing
++ toggle visibility of lines
+
+v1.1.0
++ manual aggregate/sampling selection
++ manual x-axis time tick frequency selection
++ display sub-queries over any tag key/value
++ bug fix: prevent nginx from stripping connect:keep-alive at ssl termination
+
+v1.0.0
++ first versioned version
++ display data from tsd in line graphs
++ controls for window size, aggregators, and x-axis tick size

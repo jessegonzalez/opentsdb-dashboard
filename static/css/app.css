@@ -1,0 +1,62 @@
+/* Reset
+ *******/
+html, body { background:#f2f2f9; margin:0; padding:0; color:#333; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+/* Header
+ ********/
+.header { height: 34px; background: #fff; padding:5px 0; }
+.header { font-size:25px; }
+.header .logo { margin:0 5px 0 10px; display:block; float:left; height:34px; width:133px; }
+/* .header .logo { height:34px; width:133px; background:url('../img/logo.png') no-repeat; } */
+/* .header .dashboardLogo { width:81px; height:32px; background:url('../img/dashboard.png') no-repeat; } */
+
+/* Content
+ ********/
+body > .body { background:#e9e9f4; margin:10px auto; width:1450px; margin:auto;
+	border-radius:0 0 5px 5px; padding:10px 15px 30px; }
+body > .header { width:1480px; margin:auto; }
+.content { width:1500px }
+
+/* Graphs
+ ********/
+.TabContainer .head { margin-left: 10px; }
+.TabContainer .tab { display:inline-block; width:80px; text-align:left;
+	padding:4px 0 4px 10px; border-radius:3px 3px 0 0; margin:0 1px; }
+.TabContainer .container { margin-top: -1px; padding: 5px; border-radius: 3px; }
+.TabContainer .body { padding: 10px; background: #fff; }
+
+.TabContent .control h2 { display:inline-block; }
+.TabContent .RadioButtons { display:inline-block; margin:0 0 0 10px; }
+.TabContent .control .RadioButton { margin:5px 0 0 10px; }
+.TabContent .RadioButtons .RadioButton { margin:0; }
+.TabContent .control .queryKey { margin:0 0 0 15px; }
+.TabContent .control .queryKey h3 { display:inline; }
+/* Hide tabs for now */
+.TabContainer .tab { display:none; }
+
+.MetricView { position:relative; }
+.MetricView .status { position:absolute; top:45px; left:120px; }
+.MetricView .title { font-size:18px; display:inline; font-weight:bold; }
+.MetricView .RadioButtons { display:inline; margin:0 0 0 12px; position:relative; top:-1px; }
+.MetricView .RadioButtons .Button { font-size:11px; padding: 1px 5px; font-weight:normal; }
+
+/* Buttons
+ *********/
+input[type="submit"], input[type="button"], .Button {
+	background-color:#44b; border:1px solid #575780;
+	-moz-border-radius:3px; -webkit-border-radius: 3px; border-radius: 3px;
+	color:#fff; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px; font-weight:bold;
+	margin:0px; padding:3px 10px; text-shadow:1px 1px 1px #006; -webkit-transition: background-color .3s ease-out; }
+
+input[type="submit"]:hover, input[type="button"]:hover, .Button:hover { background-color:#66d; cursor:pointer; }
+input[type="submit"]:active, input[type="button"]:active, .Button:active {  background-color:#33a; }
+input[type="submit"]:disabled, input[type="button"]:disabled, .Button:disabled { text-shadow:none; background-color:#8a8ab4; cursor: default; color: #dddddd; }
+
+.Button { display:inline-block; }
+
+.RadioButton { border-radius: 10px; border-style:outset; }
+.RadioButton.toggled { background:#229; color:#eee; border-style:inset; }
+
+.RadioButtons .Button { border-radius: 0 0 0 0; }
+.RadioButtons .Button.leftMost { border-radius: 10px 0 0 10px; }
+.RadioButtons .Button.rightMost { border-top-right-radius:10px; border-bottom-right-radius:10px; }

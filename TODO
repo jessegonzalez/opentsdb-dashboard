@@ -1,0 +1,22 @@
++ Dashboard calls /suggest?type=tagk&q=<LETTER> for each letter in the alphabet. TSD should instead accept /suggest?type=tagk&q=* instead
+
++ Dashboard assumes that all tag values are prefixed with its tag key, e.g. "host=host-web1" or "browser=browser-firefox". This is necessary for dashboard to query TSD for tag values by tag key, e.g. /suggest?type=tagv&q=browser-. TSD should instead accept /suggest?type=tagv&q=*&tagk=browser
+	
++ Dashboard uses src/shared/metrics.js to list all metrics we're using. It should instead query /suggest?type=metrics&q=* (will require patch to run/fakeProducer.js as well)
+
++ Dashboard requests data from TSD as ASCII, splits the response on newlines, and then parses the responses line-by-line. For significantly better performance TSD should return a JSON response, e.g 
+	{ data:[
+		['http.hits', 1303238406, 44.0, { 'hostname':'hostname-ec2-10-27-34-123.compute-5.amazonaws.com', 'browser':'browser-firefox' }],
+		['http.hits', ... }]
+	]}
+or
+	{ data:[
+		{ metric:'http.hits', timestamp:1303238406, value:44.0, tags: { 'hostname':'hostname-ec2-10-27-34-123.compute-5.amazonaws.com', 'browser':'browser-firefox' } },
+		{ metric:'http.hits', ... }
+	]}
+
++ There are lots of configuration parameters in run/dev.js and run/prod.js. We should document them, and probably accept all values both from a configuration file and from command line parameters. (http basic auth, https, tsd proxy URL rewriting, session auth, dev vs prod, stack trace printing, static assets directory)
+
++ DataSlice.js has a number of hacks in it and needs some spring cleaning
+
++ The UI/view classes are unnecessary, and are scattered rather randomly in the src/client directory. Clean it up.
