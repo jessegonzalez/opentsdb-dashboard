@@ -38,7 +38,7 @@ Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
 4 Get hbase. I've been using hbase-0.90.X
 
 	# From http://hbase.apache.org/book/quickstart.html. Pick a mirror at http://www.apache.org/dyn/closer.cgi/hbase/ and run:
-	curl -O http://link.to.mirrot/hbase-0.90.X.tar.gz
+	curl -O http://link.to.mirror/.../hbase-0.90.X.tar.gz
 	tar -xzvf hbase-0.90.X.tar.gz
 	hbase-0.90.X/bin/start-hbase.sh
 
@@ -48,7 +48,6 @@ Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
 	cd asynchbase
 	git checkout d1aff70c71d3
 	make
- 	cp build/hbaseasync-1.0.jar ../opentsdb/third_party/hbase/hbaseasync-1.0.jar
 	cd ..
 
 6 Get and run OpenTSDB locally
@@ -58,6 +57,7 @@ Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
 	cd opentsdb
 	make || make MD5=md5sum
 	make staticroot
+	cp ../asynchbase/build/hbaseasync-1.0.jar ./third_party/hbase/hbaseasync-1.0.jar
 	env COMPRESSION=none HBASE_HOME=../hbase-0.90.X ./src/create_table.sh
 	./src/tsdb mkmetric http.hits sockets.simultaneous lolcats.viewed
 	./src/tsdb tsd --port=4242 --staticroot=build/staticroot --cachedir=/tmp/tsd
