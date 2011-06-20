@@ -11,7 +11,9 @@ Get dependencies (node, npm, opentsdb-dashboard, hbase, asynchbase and opentsdb)
 
 1 Get node:
 
-	curl -O http://nodejs.org/dist/node-v0.4.8.tar.gz; tar -xzf node-v0.4.8.tar.gz
+	curl -O http://nodejs.org/dist/node-v0.4.8.tar.gz
+	tar -xzvf node-v0.4.8.tar.gz
+	cd node-v0.4.8
 	./configure
 	make
 	sudo make install
@@ -51,18 +53,18 @@ Develop
 -------
 Run dashboard locally
 
-	node run/dev.js
+	node opentsdb-dashboard/run/dev.js
 
 or, run dashboard locally but connect to a remote TSD on opentsdb.example.com:4242
 
-	node run/dev.js opentsdb.example.com 4242
+	node opentsdb-dashboard/run/dev.js opentsdb.example.com 4242
 
 Deploy
 ------
 Build dashboard
 
-	node run/build.js
+	node opentsdb-dashboard/run/build.js
 
 Run production dashboard
 
-	node run/prod.js opentsdb.example.com 4242
+	node opentsdb-dashboard/run/prod.js opentsdb.example.com 4242
