@@ -1,6 +1,6 @@
 {
   "name": "opentsdb-dashboard",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A dashboard for OpenTSDB",
   "licenses": [{ "type": "MIT", "url" : "http://github.com/clover/opentsdb-dashboard/raw/master/LICENSE" }],
   "author": { "name":"Marcus Westin", "email":"narcvs@gmail.com", "url":"http://marcuswest.in" },
